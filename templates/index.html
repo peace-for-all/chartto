@@ -1,4 +1,17 @@
-<!doctype html>
-<head><h2>Charts for your mother</h2></head>
+{% extends "layout.html" %}
 
-<p>Hey {{ name }}! </p>
+{% block body %}
+<h2>Charts for Todoist</h2>
+<br />
+<p>Hello, kind stranger.</p>
+<p>This page will show you the reports generated based on your Todoist activity.</p>
+<p>To generate the report, I need your API token. You can find it here -- TODO ADDLINK</p>
+
+<form action="{{ url_for('index') }}" method=post>
+    <dl>
+        <dt>Enter token here:
+        <dd><input type=text name=api_token>
+        <dd><input type=submit value="See the data">
+    </dl>
+</form>
+{% endblock %}

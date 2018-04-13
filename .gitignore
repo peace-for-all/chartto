@@ -5,3 +5,4 @@
 # Directories
 .unrealsync/
 .idea/
+.tmp/
