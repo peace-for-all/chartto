@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<h2>Old friend, eh?</h2>
+<br />
+<p>If you want to log in, please use this form:</p>
+
+<form action="{{ url_for('login') }}" method=post>
+    <dl>
+        <dt>Enter your data here:</dt>
+        <dt>Username:</dt>
+        <dd><input type=text name=username>
+        <dt>Password:</dt>
+        <dd><input type="password" name="password"></dd>
+        <dd><input type=submit value="Login">
+    </dl>
+</form>
+{% endblock %}
