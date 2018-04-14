@@ -1,36 +1,72 @@
-from flask import Flask, render_template, url_for, request, redirect
+from flask import Flask, render_template, url_for, request, redirect, session
+from flask_session import Session
 import nvd3
 from logic import Analyzer
+from core.validator import Validator
+from core.user import User
 from utils import date2d3
 
 app = Flask(__name__)
+SESSION_TYPE = 'memcached'
+app.config.from_object(__name__)
+Session(app)
+v = Validator()
 
 app.debug = True
 app.TEMPLATES_AUTO_RELOAD = True
 
+
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
-        if request.form['api_token']:  # TODO: validate!
+        print request.form['api_token']
+        if v.check_token(request.form['api_token']) or 'username' in session:
             return report()
+        else:
+            return render_template('index.html') # TODO make it show errors instead
 
-    return render_template('index.html') #, result=result, form=form)
+    return render_template('index.html')
 
-# @app.route('/login', methods=['GET', 'POST'])
-# error = None
-#     if request.method == 'POST':
-#         if valid_login(request.form['username'], request.form['password']):
-#             return log_the_user_in(request.form['username'])
-#         else:
-#             error = 'Invalid username/password'
-#         # the code below is executed if the request method
-#         # was GET or the credentials were invalid
-#     return render_template('login.html', error=error)
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    error = None
+    if request.method == 'POST':
+        if v.check_password_matches(request.form['username'], request.form['password']):
+            return log_in(request.form['username'])
+        else:
+            error = 'Invalid username/password'
+    return render_template('login.html', error=error)
+
+
+def log_in(username):
+    """Save login in session?"""
+    # TODO: implement login itself
+    session_set('username', username)
+    u = User(username)
+    api_token = u.get_token()
+    session_set('api_token', api_token) # FIXME: this lacks error processing, add case, when user is unable to login, bcs token unavail
+
+    return report()  # TODO: check, is this correct?
+
+def get_report_for_login():
+    """Returns report with api token specific to this user"""
+    return
+
+@app.route('/logout', methods=['GET', 'POST'])
+def logout(username):
+    """Remove login from session"""
+    pass
 
 
 @app.route('/report', methods=['GET', 'POST'])
 def report():
-    a = Analyzer(request.form['api_token'])
+    try:
+        api_token = session_get('api_token')
+    except:
+        api_token = request.form['api_token']
+
+    a = Analyzer(api_token)
     html = """
     <!DOCTYPE html>
     <html lang="en">
@@ -113,3 +149,12 @@ def example():
     chart.buildcontent()
 
     return chart.htmlcontent
+
+
+def session_get(key):
+    """ref: https://pythonhosted.org/Flask-Session/, don't use Session obj directly"""
+    return session.get(key, None)
+
+
+def session_set(key, value):
+    session[key] = value
