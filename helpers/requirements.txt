@@ -1,3 +1,0 @@
-Flask
-Flask-Session
-python-memcached-1.59
