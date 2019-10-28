@@ -1,8 +1,13 @@
-# Files
-*.pyc
+# Env
+.idea/
 *.iml
 
-# Directories
-.unrealsync/
-.idea/
-.tmp/
+# Github
+.github # for github documentation
+
+# Python - common
+*.pyc
+
+# Python - app
+.env # configs!
+venv/
