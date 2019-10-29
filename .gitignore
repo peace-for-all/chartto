@@ -2,12 +2,12 @@
 .idea/
 *.iml
 
-# Github
-.github # for github documentation
+# Github - for GitHub wiki and docs
+.github
 
 # Python - common
 *.pyc
 
 # Python - app
-.env # configs!
+.env
 venv/
