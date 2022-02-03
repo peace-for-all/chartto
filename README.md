@@ -32,6 +32,13 @@ Unfortunately it never got updates and never launched.
 
 Today (03.02.2022) I saw this and decided, that I'd better finish my charts for Todoist project.  
 
+## Alternatives
+
+Similar projects alive while I write this (Feb'22): 
+
+- [todoist analytics](https://github.com/brunorosilva/todoist-analytics#todoist-analytics)
+- [burndownchartist](https://burndownchartist.appspot.com/)
+
 ## Gratitude
 
 I'll be really grateful for [a book](https://www.buymeacoffee.com/walsk) or just a word of thanks. :-)

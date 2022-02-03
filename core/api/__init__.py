@@ -28,7 +28,7 @@ class Todoist:
             tasks = self.api.activity.get(
                 object_type='item',
                 event_type='completed',
-                limit=30 # wx: change default limit to anything else
+                limit=30 #  wx: change default limit to anything else
             )
 
         return tasks
