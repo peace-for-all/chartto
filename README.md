@@ -1,15 +1,37 @@
+# chartto - dashboard for Todoist
+
+Charts from Todoist data.
+
+(Todoist still has only daily/weekly completed tasks counts and primitive graphs ([productivity view](https://todoist.com/help/articles/how-to-use-the-productivity-view). Seeing more really helps.)
+
+(There are some extensions though: [ganttify](https://todoist.com/integrations/apps/ganttify), etc.)
+
+## Features
+
+- 
+
+
+## Usage
 
 ### Requirements
 You can install them by running:
 
-pip install -r helpers/requirements.txt
+```bash
+python3 -m venv venv
+source venv/bin/activate
+pip install -r docs/requirements.txt
+```
 
-Common recommendation — install them in virtualenv (or whatever is the most trendy tool to make it isolated).
+This creates a [virtual environment](https://docs.python.org/3/library/venv.html#:~:text=A%20virtual%20environment%20is%20a,part%20of%20your%20operating%20system.) with all dependencies for this project installed.
 
-### Note about the name
-I'm sorry to use the word "todoist" in the name, but I've found another repo called [todoist-shortcuts](https://github.com/mgsloan/todoist-shortcuts) (very cool browser extension, btw, highly recommended to see/use/contribute/sponsor!). 
-They're fine with the name usage and even recommend this extension in the [official shortcuts documentation](https://get.todoist.help/hc/en-us/articles/205063212) (check the "Quick tip - if you're looking for more...").
 
-The reason behind this name choice is the following: I know, that many people would like to have their Todoist stats visualized. And I guess the name will make this repo more discoverable => more active (ideally happy!) users.
+## Why
 
-But initially the app was called "chartto" and I will leave this name everywhere in the code (for now).
+4 years ago I wanted to build this, but didn't, because [dolytics](https://www.producthunt.com/upcoming/dolytics) project was just declared and I thought, that it would be finished.
+Unfortunately it never got updates and never launched.
+
+Today (03.02.2022) I saw this and decided, that I'd better finish my charts for Todoist project.  
+
+## Gratitude
+
+I'll be really grateful for [a book](https://www.buymeacoffee.com/walsk) or just a word of thanks. :-)
